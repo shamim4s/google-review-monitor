@@ -194,7 +194,7 @@ const reviews = await page.$$eval('[data-review-id]', cards => {
                     ?.trim() || '',
 
             text:
-                card.querySelector('.wiI7pd span')
+                card.querySelector('.wiI7pd')
                     ?.textContent
                     ?.trim() || '',
 
