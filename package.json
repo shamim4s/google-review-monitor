@@ -1,0 +1,17 @@
+{
+  "name": "google-review-monitor",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Google Maps latest review monitor using Apify + Playwright",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "dependencies": {
+    "apify": "^3.7.2",
+    "playwright": "^1.60.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
