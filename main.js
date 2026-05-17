@@ -199,13 +199,27 @@ const reviews = await page.$$eval('[data-review-id]', cards => {
                     ?.trim() || '',
 
             rating:
-                card.querySelector('[role="img"]')
-                    ?.getAttribute('aria-label') || '',
+            card.querySelector('[role="img"]')
+                ?.getAttribute('aria-label')
+                ?.trim()
+            ||
+            card.querySelector('.DU9Pgb .fontBodyLarge.fzvQIb')
+                ?.textContent
+                ?.trim()
+            ||
+            '',
 
-            time:
-                card.querySelector('.rsqaWe')
-                    ?.textContent
-                    ?.trim() || '',
+        time:
+            card.querySelector('.rsqaWe')
+                ?.textContent
+                ?.trim()
+            ||
+            card.querySelector('.DU9Pgb .xRkPPb')
+                ?.childNodes[0]
+                ?.textContent
+                ?.trim()
+            ||
+            '',
 
             reviewerImage:
                 card.querySelector('img')
