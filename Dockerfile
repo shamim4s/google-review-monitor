@@ -1,9 +1,11 @@
 FROM apify/actor-node-playwright-chrome:20
 
-COPY package*.json ./
+COPY --chown=myuser:myuser package*.json ./
+
+USER myuser
 
 RUN npm install
 
-COPY . ./
+COPY --chown=myuser:myuser . ./
 
 CMD npm start
