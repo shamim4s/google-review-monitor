@@ -6,6 +6,8 @@ await Actor.init();
 
 let input = await Actor.getInput();
 
+const maxReview=11;
+
 // Local fallback
 if (!input) {
     console.log('Running locally -> loading input.json');
@@ -155,7 +157,7 @@ await page.waitForTimeout(5000);
  */
 console.log('Scrolling reviews...');
 
-for (let i = 0; i < 6; i++) {
+for (let i = 0; i < maxReview; i++) {
     await reviewContainer.evaluate(el => {
         el.scrollBy(0, 3000);
     });
@@ -198,16 +200,19 @@ const reviews = await page.$$eval('[data-review-id]', cards => {
                     ?.textContent
                     ?.trim() || '',
 
-            rating:
-            card.querySelector('[role="img"]')
-                ?.getAttribute('aria-label')
-                ?.trim()
-            ||
-            card.querySelector('.DU9Pgb .fontBodyLarge.fzvQIb')
-                ?.textContent
-                ?.trim()
-            ||
-            '',
+            rating: (() => {
+                const ratingText = card.querySelector('[role="img"]')
+                    ?.getAttribute('aria-label')
+                    ?.trim()
+                ||
+                card.querySelector('.DU9Pgb .fontBodyLarge.fzvQIb')
+                    ?.textContent
+                    ?.trim()
+                ||
+                '';
+                const match = ratingText.match(/^(\d+(\.\d+)?)/);
+                return match ? match[1] : '';
+            })(),
 
         time:
             card.querySelector('.rsqaWe')
@@ -215,7 +220,7 @@ const reviews = await page.$$eval('[data-review-id]', cards => {
                 ?.trim()
             ||
             card.querySelector('.DU9Pgb .xRkPPb')
-                ?.childNodes[0]
+                // ?.childNodes[0]
                 ?.textContent
                 ?.trim()
             ||
