@@ -5,3 +5,6 @@ chrome-profile
 test-results
 .vs
 .env
+reviews.json
+latest-reviews.json
+debug-no-reviews.png

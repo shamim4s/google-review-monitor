@@ -1,8 +1,10 @@
 ﻿import { Actor } from 'apify';
 import { chromium } from 'playwright';
 import axios from 'axios';
+import dotenv from 'dotenv';
 import fs from 'fs';
 
+dotenv.config();
 await Actor.init();
 
 let input = await Actor.getInput();
@@ -259,25 +261,184 @@ console.log(JSON.stringify(reviews, null, 2));
  * STEP 5: SAVE DATASET
  * ===============================
  */
-const dataset = await Actor.openDataset();
+/**
+ * ===============================
+ * STEP 5: SAVE REVIEWS
+ * ===============================
+ */
 
-const previous = await dataset.getData();
-const oldReviews = previous.items || [];
+const isApify = !!process.env.APIFY_IS_AT_HOME;
 
-const oldTexts = oldReviews.map(r => r.text);
+let oldReviews = [];
 
-const newReviews = reviews.filter(r =>
-    r.text && !oldTexts.includes(r.text)
-);
+/**
+ * ===============================
+ * APIFY STORAGE
+ * ===============================
+ */
+if (isApify) {
 
-if (newReviews.length > 0) {
-    console.log(`Saving ${newReviews.length} new reviews`);
-    await Actor.pushData(newReviews);
+    console.log('Running on Apify');
+
+    const dataset = await Actor.openDataset();
+
+    const previous = await dataset.getData();
+
+    oldReviews = previous.items || [];
+
 } else {
-    console.log('No new reviews found');
+
+    console.log('Running locally');
+
+    /**
+     * LOCAL reviews.json
+     */
+    if (fs.existsSync('./reviews.json')) {
+
+        try {
+
+            oldReviews = JSON.parse(
+                fs.readFileSync('./reviews.json', 'utf8')
+            );
+
+        } catch (e) {
+
+            console.log('Failed reading local reviews.json');
+        }
+    }
 }
 
+/**
+ * ===============================
+ * DETECT NEW REVIEWS
+ * ===============================
+ */
+const oldReviewIds = oldReviews.map(r => r.reviewId);
+
+const newReviews = reviews.filter(r =>
+    r.reviewId &&
+    !oldReviewIds.includes(r.reviewId)
+);
+
+console.log('======================');
+console.log('NEW REVIEWS:', newReviews.length);
+console.log('======================');
+
+/**
+ * ===============================
+ * SAVE TO APIFY
+ * ===============================
+ */
+if (isApify) {
+
+    if (newReviews.length > 0) {
+
+        console.log('Saving reviews to Apify dataset');
+
+        await Actor.pushData(newReviews);
+
+    } else {
+
+        console.log('No new reviews to save');
+    }
+
+} else {
+
+    /**
+     * LOCAL SAVE
+     */
+    console.log('Saving local reviews.json');
+
+    fs.writeFileSync(
+        './reviews.json',
+        JSON.stringify(reviews, null, 2)
+    );
+}
+
+/**
+ * ===============================
+ * UPDATE GITHUB GIST
+ * ===============================
+ */
+async function updateGist(reviews) {
+
+    const token = process.env.GITHUB_TOKEN;
+    const gistId = process.env.GIST_ID;
+
+    if (!token || !gistId) {
+
+        console.log('Missing GitHub credentials');
+
+        return;
+    }
+
+    console.log('Uploading reviews to GitHub Gist...');
+
+    try {
+
+        await axios.patch(
+            `https://api.github.com/gists/${gistId}`,
+            {
+                files: {
+                    'reviews.json': {
+                        content: JSON.stringify(reviews, null, 2)
+                    }
+                }
+            },
+            {
+                headers: {
+                    Authorization: `token ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            }
+        );
+
+        console.log('Gist updated successfully');
+
+    } catch (error) {
+
+        console.log('Failed updating gist');
+
+        console.log(error.response?.data || error.message);
+    }
+}
+
+/**
+ * ===============================
+ * UPDATE GIST WITH ALL REVIEWS
+ * ===============================
+ */
+await updateGist(reviews);
+
+/**
+ * ===============================
+ * SAVE DEBUG COPY LOCALLY
+ * ===============================
+ */
+if (!isApify) {
+
+    fs.writeFileSync(
+        './latest-reviews.json',
+        JSON.stringify(reviews, null, 2)
+    );
+}
+
+/**
+ * ===============================
+ * CLEANUP
+ * ===============================
+ */
 console.log('Closing browser...');
 
 await browser.close();
-await Actor.exit();
+
+/**
+ * ONLY exit Actor on Apify
+ */
+if (isApify) {
+
+    await Actor.exit();
+}
+
+console.log('Done');
+await browser.close();
