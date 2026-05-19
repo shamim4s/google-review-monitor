@@ -4,3 +4,4 @@ apify_storage
 chrome-profile
 test-results
 .vs
+.env
