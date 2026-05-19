@@ -136,16 +136,24 @@ npm install
 
 ```bash
 npm run build
+
+npx playwright install chromium
 ```
 
 ---
 
 ## Step 4 — Add Google Maps Review URL
 
-Edit your `.env` file:
+Edit your `input.json` file:
 
-```env
-GOOGLE_MAPS_URL=https://www.google.com/maps/place/your-business
+```input.json
+{
+    "startUrls": [
+        {
+            "url": "https://www.google.com/maps/place/Dhaka+University/@23.7294239,90.3731335,15z/data=!4m6!3m5!1s0x3755b8e96d8db095:0x92cc374a937406ff!8m2!3d23.731802!4d90.396646!16s%2Fg%2F11vp_p2_dy?entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D&hl=en"
+        }
+    ]
+}
 ```
 
 ---

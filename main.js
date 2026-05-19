@@ -1,5 +1,6 @@
 ﻿import { Actor } from 'apify';
 import { chromium } from 'playwright';
+import axios from 'axios';
 import fs from 'fs';
 
 await Actor.init();
