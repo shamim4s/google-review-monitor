@@ -4,6 +4,7 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 import fs from 'fs';
 
+
 dotenv.config();
 await Actor.init();
 
@@ -23,6 +24,15 @@ if (!input) {
 if (!input?.startUrls?.length) {
     throw new Error('No Google Maps URL found in input');
 }
+
+
+if (!input?.dataFile) {
+    throw new Error('No dataFile found in input.json');
+}
+
+const DATA_FILE = input.dataFile;
+
+console.log('Using data file:', DATA_FILE);
 
 const url = input.startUrls[0].url;
 
@@ -385,11 +395,11 @@ if (isApify) {
     /**
      * LOCAL reviews.json
      */
-    if (fs.existsSync('./reviews.json')) {
+    if (fs.existsSync(`./${DATA_FILE}`)) {
 
     try {
             const oldData = JSON.parse(
-                fs.readFileSync('./reviews.json', 'utf8')
+                fs.readFileSync(`./${DATA_FILE}`, 'utf8')
             );
 
             /**
@@ -455,7 +465,7 @@ if (isApify) {
     console.log('Saving local reviews.json');
 
     fs.writeFileSync(
-        './reviews.json',
+        `./${DATA_FILE}`,
         JSON.stringify(finalData, null, 2)
     );
 }
@@ -485,7 +495,7 @@ async function updateGist(data){
             `https://api.github.com/gists/${gistId}`,
             {
                 files: {
-                    'reviews.json': {
+                    [DATA_FILE]: {
                         content: JSON.stringify(finalData, null, 2)
                     }
                 }
