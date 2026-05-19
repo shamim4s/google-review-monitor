@@ -168,6 +168,89 @@ for (let i = 0; i < maxReview; i++) {
     await page.waitForTimeout(2000);
 }
 
+    /**
+     * ===============================
+     * STEP 4A: EXTRACT PLACE RATING SUMMARY
+     * ===============================
+     */
+
+    console.log('Extracting place rating summary...');
+
+    const placeRatingSummary = await page.evaluate(() => {
+
+        /**
+         * Find rating block
+         */
+        const blocks = Array.from(
+            document.querySelectorAll('div.jANrlb')
+        );
+
+        let target = null;
+
+        for (const block of blocks) {
+
+            const rating =
+                block.querySelector('.fontDisplayLarge')
+                    ?.textContent
+                    ?.trim();
+
+            const reviews =
+                block.querySelector('.fontBodySmall')
+                    ?.textContent
+                    ?.trim();
+
+            if (rating && reviews) {
+                target = block;
+                break;
+            }
+        }
+
+        if (!target) {
+            return {
+                AvgRating: '',
+                TotalStars: '',
+                TotalReviews: ''
+            };
+        }
+
+        /**
+         * Average rating
+         */
+        const AvgRating =
+            target.querySelector('.fontDisplayLarge')
+                ?.textContent
+                ?.trim() || '';
+
+        /**
+         * "4.5 stars"
+         */
+        const TotalStars =
+            target.querySelector('[role="img"]')
+                ?.getAttribute('aria-label')
+                ?.trim() || '';
+
+        /**
+         * "21,858 reviews"
+         */
+        const TotalReviews =
+            target.querySelector('.fontBodySmall')
+                ?.textContent
+                ?.trim() || '';
+
+        return {
+            AvgRating,
+            TotalStars,
+            TotalReviews
+        };
+    });
+
+    console.log('======================');
+    console.log('PLACE RATING SUMMARY');
+    console.log('======================');
+
+    console.log(placeRatingSummary);
+
+
 /**
  * ===============================
  * STEP 4: EXTRACT REVIEWS
@@ -250,22 +333,31 @@ const reviews = await page.$$eval('[data-review-id]', cards => {
     return Array.from(unique.values());
 });
 
+/**
+ * ===============================
+ * FINAL JSON STRUCTURE
+ * ===============================
+ */
+
+const finalData = {
+    summary: placeRatingSummary,
+    totalReviewsScraped: reviews.length,
+    reviews
+};
+
 console.log('======================');
 console.log('REVIEWS FOUND:', reviews.length);
 console.log('======================');
 
-console.log(JSON.stringify(reviews, null, 2));
+// console.log(JSON.stringify(reviews, null, 2));
+console.log(JSON.stringify(finalData, null, 2));
 
 /**
  * ===============================
- * STEP 5: SAVE DATASET
+ * STEP 5: SAVE DATASET & SAVE REVIEWS
  * ===============================
  */
-/**
- * ===============================
- * STEP 5: SAVE REVIEWS
- * ===============================
- */
+
 
 const isApify = !!process.env.APIFY_IS_AT_HOME;
 
@@ -295,15 +387,28 @@ if (isApify) {
      */
     if (fs.existsSync('./reviews.json')) {
 
-        try {
-
-            oldReviews = JSON.parse(
+    try {
+            const oldData = JSON.parse(
                 fs.readFileSync('./reviews.json', 'utf8')
             );
+
+            /**
+             * Old format support
+             */
+            if (Array.isArray(oldData)) {
+
+                oldReviews = oldData;
+
+            } else {
+
+                oldReviews = oldData.reviews || [];
+            }
 
         } catch (e) {
 
             console.log('Failed reading local reviews.json');
+
+            oldReviews = [];
         }
     }
 }
@@ -351,7 +456,7 @@ if (isApify) {
 
     fs.writeFileSync(
         './reviews.json',
-        JSON.stringify(reviews, null, 2)
+        JSON.stringify(finalData, null, 2)
     );
 }
 
@@ -360,7 +465,7 @@ if (isApify) {
  * UPDATE GITHUB GIST
  * ===============================
  */
-async function updateGist(reviews) {
+async function updateGist(data){
 
     const token = process.env.GITHUB_TOKEN;
     const gistId = process.env.GIST_ID;
@@ -381,7 +486,7 @@ async function updateGist(reviews) {
             {
                 files: {
                     'reviews.json': {
-                        content: JSON.stringify(reviews, null, 2)
+                        content: JSON.stringify(finalData, null, 2)
                     }
                 }
             },
@@ -408,7 +513,7 @@ async function updateGist(reviews) {
  * UPDATE GIST WITH ALL REVIEWS
  * ===============================
  */
-await updateGist(reviews);
+await updateGist(finalData);
 
 /**
  * ===============================
@@ -419,7 +524,7 @@ if (!isApify) {
 
     fs.writeFileSync(
         './latest-reviews.json',
-        JSON.stringify(reviews, null, 2)
+        JSON.stringify(finalData, null, 2)
     );
 }
 
@@ -428,17 +533,27 @@ if (!isApify) {
  * CLEANUP
  * ===============================
  */
+
 console.log('Closing browser...');
 
-await browser.close();
+try {
+    await browser.close();
+} catch (e) {
+    console.log('Browser already closed');
+}
 
 /**
  * ONLY exit Actor on Apify
  */
 if (isApify) {
-
     await Actor.exit();
 }
 
 console.log('Done');
-await browser.close();
+
+/**
+ * Force local Node exit
+ */
+if (!isApify) {
+    process.exit(0);
+}
