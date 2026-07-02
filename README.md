@@ -161,7 +161,7 @@ Edit your `input.json` file:
 ## Step 5 — Run Project
 
 ```bash
-npm start
+node main.js
 ```
 
 Development mode:
@@ -280,8 +280,11 @@ Add Google Maps URL into Actor Input JSON:
 
 ```json
 {
-  "googleMapsUrl": "https://www.google.com/maps/place/your-business",
-  "maxReviews": 100
+    "startUrls": [
+        {
+            "url": "https://www.google.com/maps/place/Dhaka+University/@23.7294239,90.3731335,15z/data=!4m6!3m5!1s0x3755b8e96d8db095:0x92cc374a937406ff!8m2!3d23.731802!4d90.396646!16s%2Fg%2F11vp_p2_dy?entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D&hl=en"
+        }
+    ]
 }
 ```
 
