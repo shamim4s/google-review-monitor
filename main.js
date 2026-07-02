@@ -10,7 +10,9 @@ await Actor.init();
 
 let input = await Actor.getInput();
 
-const maxReview=11;
+// const maxReview=16;
+
+
 
 // Local fallback
 if (!input) {
@@ -30,11 +32,21 @@ if (!input?.dataFile) {
     throw new Error('No dataFile found in input.json');
 }
 
+if (!input?.MAXREVIEW) {
+    throw new Error('No MAXREVIEW found in input.json');
+}
+
+
 const DATA_FILE = input.dataFile;
 
 console.log('Using data file:', DATA_FILE);
 
 const url = input.startUrls[0].url;
+
+
+const maxReview = input.MAXREVIEW;
+
+console.log('maxReview  :',maxReview);
 
 console.log('Launching browser...');
 
@@ -170,7 +182,7 @@ await page.waitForTimeout(5000);
  */
 console.log('Scrolling reviews...');
 
-for (let i = 0; i < maxReview; i++) {
+for (let i = 0; i < 5; i++) {
     await reviewContainer.evaluate(el => {
         el.scrollBy(0, 3000);
     });
@@ -322,9 +334,14 @@ const reviews = await page.$$eval('[data-review-id]', cards => {
             ||
             '',
 
-            reviewerImage:
-                card.querySelector('img')
-                    ?.src || '',
+            // reviewerImage:
+            //     card.querySelector('img')
+            //         ?.src || '',
+            reviewerImage: (() => {
+                    const img = card.querySelector('img')?.src || '';
+
+                    return img.replace(/=w\d+-h\d+/i, '=w100-h100');
+                })(),
 
             profileUrl:
                 card.querySelector('button[data-href]')
