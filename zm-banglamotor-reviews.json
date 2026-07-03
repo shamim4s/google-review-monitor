@@ -2,9 +2,9 @@
   "summary": {
     "AvgRating": "4.5",
     "TotalStars": "4.5 stars",
-    "TotalReviews": "21,890 reviews"
+    "TotalReviews": "21,891 reviews"
   },
-  "totalReviewsScraped": 10,
+  "totalReviewsScraped": 20,
   "reviews": [
     {
       "reviewId": "ChdDSUhNMG9nS0VMU1F2YWV5ZzZIVjZnRRAB",
@@ -13,8 +13,8 @@
       "rating": "5",
       "time": "3 weeks ago on Tripadvisor",
       "reviewerImage": "https://lh3.googleusercontent.com/local-reviews/AJMZ0QdrOaBwvzVCVZGa_JCxmRob18-RTGR2NAc2ehM2ioIFQuUJBtaO6jr7GHqX15LV00VYsw=w100-h100-p-rp-br100",
-      "profileUrl": "https://www.tripadvisor.com/ShowUserReviews-g293936-d301905-r1063090814?m=68573&staydates=2026_08_06_2026_08_07&uguests=1_2_0&supdv=desktop&supuc=BD&supul=en",
-      "scrapedAt": "2026-07-02T23:31:24.757Z"
+      "profileUrl": "https://www.tripadvisor.com/ShowUserReviews-g293936-d301905-r1063090814?m=68573&staydates=2026_09_24_2026_09_25&uguests=1_2_0&supdv=desktop&supuc=BD&supul=en",
+      "scrapedAt": "2026-07-03T18:48:49.187Z"
     },
     {
       "reviewId": "ChZDSUhNMG9nS0VJeUl2cUhkMHFHY0J3EAE",
@@ -24,87 +24,187 @@
       "time": "6 months ago on Trip.com",
       "reviewerImage": "https://lh3.googleusercontent.com/local-reviews/AJMZ0QeCck1CfANpZm9bBk3PHtP97Kh9k25HZfvq9yAWlN3BaIyjSHUPEfWkhAJmuYiJsH-_6g=w100-h100-p-rp-br100",
       "profileUrl": "https://www.trip.com/hotels/detail?hotelid=1014156&Allianceid=810504&Sid=1394411&utm_medium=cpc&utm_campaign=HPA&utm_source=google#review",
-      "scrapedAt": "2026-07-02T23:31:24.757Z"
+      "scrapedAt": "2026-07-03T18:48:49.187Z"
     },
     {
       "reviewId": "Ci9DQUlRQUNvZENodHljRjlvT2xCR1pVeFdTRkJvYkhrME9GZEVkWE5zWkVoNlVYYxAB",
       "name": "Adhea Dian",
-      "text": "I had a wonderful experience staying at Pan Pacific Sonargaon Dhaka for several months. The service was consistently excellent, and all the staff were incredibly friendly, attentive, and professional. They always made me feel welcomed and …",
+      "text": "I had a wonderful experience staying at Pan Pacific Sonargaon Dhaka for several months. The service was consistently excellent, and all the staff were incredibly friendly, attentive, and professional. They always made me feel welcomed and … More",
       "rating": "5",
       "time": "2 months ago on Google",
       "reviewerImage": "https://lh3.googleusercontent.com/a-/ALV-UjUMK84RO6Tr0zksWTUBGfVXxzISeZfRgVOUPhEwegJLKw4TNbrUDg=w100-h100-p-rp-mo-ba12-br100",
       "profileUrl": "https://www.google.com/maps/contrib/113857234876523124962/reviews?hl=en",
-      "scrapedAt": "2026-07-02T23:31:24.757Z"
+      "scrapedAt": "2026-07-03T18:48:49.187Z"
     },
     {
       "reviewId": "Ci9DQUlRQUNvZENodHljRjlvT2xCek4yaEdORGg0TjFNMmFEZDRhMFJDY3kxM2JGRRAB",
       "name": "MD AMIR FAISAL",
-      "text": "Pan Pacific Sonargaon Dhaka offers a timeless luxury experience in the heart of the city. The staff provides world-class service, making every guest feel truly welcome. I loved the spacious rooms and the incredible buffet which features a …",
+      "text": "Pan Pacific Sonargaon Dhaka offers a timeless luxury experience in the heart of the city. The staff provides world-class service, making every guest feel truly welcome. I loved the spacious rooms and the incredible buffet which features a … More",
       "rating": "5",
       "time": "2 months ago on Google",
       "reviewerImage": "https://lh3.googleusercontent.com/a-/ALV-UjVJSOLPJy2GGZ3uEqsPBdMEE16VYbNDDdaoBBj4EaV-BZJc25w=w100-h100-p-rp-mo-ba12-br100",
       "profileUrl": "https://www.google.com/maps/contrib/117476784311595539644/reviews?hl=en",
-      "scrapedAt": "2026-07-02T23:31:24.757Z"
+      "scrapedAt": "2026-07-03T18:48:49.187Z"
     },
     {
       "reviewId": "Ci9DQUlRQUNvZENodHljRjlvT21aNVJuZElUakJNZGxOV2FHMXlPWFpXYzJZNU5VRRAB",
       "name": "Muhammad zahran Albi",
-      "text": "I had a truly pleasant experience staying at Pan Pacific. The hotel offers a perfect blend of comfort, elegance, and excellent service. The room was clean, spacious, and well-maintained, with all the amenities needed for a relaxing stay. …",
+      "text": "I had a truly pleasant experience staying at Pan Pacific. The hotel offers a perfect blend of comfort, elegance, and excellent service. The room was clean, spacious, and well-maintained, with all the amenities needed for a relaxing stay. … More",
       "rating": "5",
       "time": "3 months ago on Google",
       "reviewerImage": "https://lh3.googleusercontent.com/a-/ALV-UjUsWpnrL18cqGP_-3p_jBx38fXQXBkku9pFsQzsMDFISdLp5ZQ7=w100-h100-p-rp-mo-ba12-br100",
       "profileUrl": "https://www.google.com/maps/contrib/110329794511945180719/reviews?hl=en",
-      "scrapedAt": "2026-07-02T23:31:24.757Z"
+      "scrapedAt": "2026-07-03T18:48:49.187Z"
     },
     {
       "reviewId": "Ci9DQUlRQUNvZENodHljRjlvT2sxUWNUVlBjRGxDVlhKRWFXMVpUbWgzZFVoQ1ozYxAB",
       "name": "tondra cs",
-      "text": "We went to Pan Pacific Sonargaon Dhaka to enjoy breakfast Buffet. It was a cool place to have breakfast and menu was good. It is one of the popular place to stay in Bangladesh and its spatial capacity and decoration will match with any kind …",
+      "text": "We went to Pan Pacific Sonargaon Dhaka to enjoy breakfast Buffet. It was a cool place to have breakfast and menu was good. It is one of the popular place to stay in Bangladesh and its spatial capacity and decoration will match with any kind … More",
       "rating": "4",
       "time": "2 months ago on Google",
       "reviewerImage": "https://lh3.googleusercontent.com/a-/ALV-UjUgoD2BBifVvXTfTsccKv4aiYg86CZtXJ1Asev-KwVcjvep_Gk=w100-h100-p-rp-mo-ba12-br100",
       "profileUrl": "https://www.google.com/maps/contrib/112186243703951199151/reviews?hl=en",
-      "scrapedAt": "2026-07-02T23:31:24.757Z"
+      "scrapedAt": "2026-07-03T18:48:49.187Z"
     },
     {
       "reviewId": "Ci9DQUlRQUNvZENodHljRjlvT2pOdFIwZHZNM1p3V25GRVoyaE9la3BMYzBvNFoxRRAB",
       "name": "Ziaur Rahman",
-      "text": "Located in the heart of Dhaka, Pan Pacific Sonargaon Dhaka offers a refined five-star experience that blends comfort, convenience, and classic elegance. The hotel is well-positioned for both business and leisure travelers, with easy access …",
+      "text": "Located in the heart of Dhaka, Pan Pacific Sonargaon Dhaka offers a refined five-star experience that blends comfort, convenience, and classic elegance. The hotel is well-positioned for both business and leisure travelers, with easy access … More",
       "rating": "5",
       "time": "4 months ago on Google",
       "reviewerImage": "https://lh3.googleusercontent.com/a-/ALV-UjVpCaGLjvsfx9Pq3fEqJkDS7_fCNTlXKStelzAaiMHftG_xFFAx=w100-h100-p-rp-mo-ba12-br100",
       "profileUrl": "https://www.google.com/maps/contrib/105862466686030708645/reviews?hl=en",
-      "scrapedAt": "2026-07-02T23:31:24.757Z"
+      "scrapedAt": "2026-07-03T18:48:49.187Z"
     },
     {
       "reviewId": "Ci9DQUlRQUNvZENodHljRjlvT25OMWIyeEpNV1ZSTFVNdFFYaGhSREpKT1hSWFNuYxAB",
       "name": "Tanjeur Rahman",
-      "text": "This is one of the oldest and largest 5-star hotels in Bangladesh. We had Iftar here recently. …",
+      "text": "This is one of the oldest and largest 5-star hotels in Bangladesh. We had Iftar here recently. … More",
       "rating": "5",
       "time": "3 months ago on Google",
       "reviewerImage": "https://lh3.googleusercontent.com/a-/ALV-UjU8EdLTMdUs8nupIduWVj18iwpktD2CqGt-dOiydGY0MDVML1RR=w100-h100-p-rp-mo-ba12-br100",
       "profileUrl": "https://www.google.com/maps/contrib/102549449664563775197/reviews?hl=en",
-      "scrapedAt": "2026-07-02T23:31:24.757Z"
+      "scrapedAt": "2026-07-03T18:48:49.188Z"
     },
     {
       "reviewId": "Ci9DQUlRQUNvZENodHljRjlvT214NmRWSjBhbFJYY0dscFdsY3liRXBsYUVOb1JuYxAB",
       "name": "Amanullah",
-      "text": "Great stay at Pan Pacific Sonargaon! Excellent location in the heart of Dhaka, friendly and helpful staff, clean rooms, and delicious breakfast. Highly recommended for both business and leisure.",
+      "text": "Great stay at Pan Pacific Sonargaon! Excellent location in the heart of Dhaka, friendly and helpful staff, clean rooms, and delicious breakfast. Highly recommended for both business and leisure. More",
       "rating": "5",
       "time": "a month ago on Google",
       "reviewerImage": "https://lh3.googleusercontent.com/a-/ALV-UjWUeOKNyROkv5IovEiut8KiXumeo_UpkUFB4kLG9aNn4Nz4CXfnXg=w100-h100-p-rp-mo-ba12-br100",
       "profileUrl": "https://www.google.com/maps/contrib/109912181848484765022/reviews?hl=en",
-      "scrapedAt": "2026-07-02T23:31:24.757Z"
+      "scrapedAt": "2026-07-03T18:48:49.188Z"
     },
     {
       "reviewId": "Ci9DQUlRQUNvZENodHljRjlvT21kZlNsSXRjbmhPUWs5WVUwMTZXV3N0TUd4R1ltYxAB",
       "name": "কাসেম Abul kashem",
-      "text": "If you’re looking for an exceptional dining experience, Pan Pacific Sonargaon Dhaka truly stands out among similar hotels. Their food quality, variety, and service are consistently impressive. During Ramadan, their Iftar arrangement is …",
+      "text": "If you’re looking for an exceptional dining experience, Pan Pacific Sonargaon Dhaka truly stands out among similar hotels. Their food quality, variety, and service are consistently impressive. During Ramadan, their Iftar arrangement is … More",
       "rating": "5",
       "time": "Edited 3 months ago on Google",
       "reviewerImage": "https://lh3.googleusercontent.com/a-/ALV-UjUvyyXA5LTQDphX2m0TwV-O-iHSGWzoHeoxb4RSds1m3H0hgNfi=w100-h100-p-rp-mo-ba12-br100",
       "profileUrl": "https://www.google.com/maps/contrib/107122219023660199350/reviews?hl=en",
-      "scrapedAt": "2026-07-02T23:31:24.757Z"
+      "scrapedAt": "2026-07-03T18:48:49.188Z"
+    },
+    {
+      "reviewId": "Ci9DQUlRQUNvZENodHljRjlvT2kxTFEzSkxkRmxxWmxGeVlWSmxPVWRRVGtkcFRrRRAB",
+      "name": "Rezaul Haque",
+      "text": "I had not been to Jharna Grill at Pan Pacific Sonargaon Dhaka in decades. My mother, however, had been there about six years ago and liked it, so we chose it as the venue for my sister’s birthday. … More",
+      "rating": "2",
+      "time": "2 months ago on Google",
+      "reviewerImage": "https://lh3.googleusercontent.com/a/ACg8ocKq8W52P8NGizf2oA4SS2mGi-u8TxmY3d_W-mwbEDOneL9yj5w=w100-h100-p-rp-mo-ba12-br100",
+      "profileUrl": "https://www.google.com/maps/contrib/113312179408321367289/reviews?hl=en",
+      "scrapedAt": "2026-07-03T18:48:54.248Z"
+    },
+    {
+      "reviewId": "Ci9DQUlRQUNvZENodHljRjlvT2pVNVZVNUVSRmxOZG5VMlQxQm1SeTF0TnpoU1ZrRRAB",
+      "name": "Dr. Shajib Ahamed",
+      "text": "Hotel Sonargaon has a nice, calm environment and the staff are helpful and professional. The rooms are clean and comfortable, and the common areas are well maintained. Food is good, though service can be a bit slow when it’s busy. A decent place to stay. More",
+      "rating": "4",
+      "time": "5 months ago on Google",
+      "reviewerImage": "https://lh3.googleusercontent.com/a-/ALV-UjXhgskReCMfCJ8tz0KTknmRymWyKrDbKMwtjY_HuvrUniJDQ_U=w100-h100-p-rp-mo-ba12-br100",
+      "profileUrl": "https://www.google.com/maps/contrib/118323568867649791629/reviews?hl=en",
+      "scrapedAt": "2026-07-03T18:48:54.248Z"
+    },
+    {
+      "reviewId": "Ci9DQUlRQUNvZENodHljRjlvT2premNYcHZWbVptWTNOaVdGRjZibVJQV21aWGNrRRAB",
+      "name": "Aayaz Ahmed",
+      "text": "Pan Pacific Sonargaon Dhaka is one of the reliable 5-star hotels in the heart of Dhaka city. I like the location most, because staying here makes it easy to move around both Old Dhaka and New Dhaka. Karwan Bazar, Panthapath, and other … More",
+      "rating": "4",
+      "time": "6 months ago on Google",
+      "reviewerImage": "https://lh3.googleusercontent.com/a-/ALV-UjUTDyH297pTwfdoi9oQ5E5ssZjQGtft3fkgATF5ScGS96I4OTc=w100-h100-p-rp-mo-ba12-br100",
+      "profileUrl": "https://www.google.com/maps/contrib/118043256612520892373/reviews?hl=en",
+      "scrapedAt": "2026-07-03T18:48:54.248Z"
+    },
+    {
+      "reviewId": "ChdDSUhNMG9nS0VNaXR5TDdkbFktb2xRRRAB",
+      "name": "Ogev_calvallera49",
+      "text": "The hotel service is very good, everyone is friendly and very accommodating. Housekeeping was very receptive to feedback and able to make changes and very polite.",
+      "rating": "5",
+      "time": "a month ago on Tripadvisor",
+      "reviewerImage": "https://lh3.googleusercontent.com/local-reviews/AJMZ0QfCm-MBS7Itwd4h-55xcyygsVKq1IZbUTNyg17UKkQsT2C3oSXBlQ_-pGTl8imnrFVtVw=w100-h100-p-rp-br100",
+      "profileUrl": "https://www.tripadvisor.com/ShowUserReviews-g293936-d301905-r1062028969?m=68573&staydates=2026_09_24_2026_09_25&uguests=1_2_0&supdv=desktop&supuc=BD&supul=en",
+      "scrapedAt": "2026-07-03T18:48:54.248Z"
+    },
+    {
+      "reviewId": "ChdDSUhNMG9nS0VJQ0FnTUNJbE9HRDVRRRAB",
+      "name": "Mursheda begum",
+      "text": "Pan Pacific Sonargaon hotel is a famous luxurious hotel in Dhaka city. Also  it stands in Kazi Nazrul Islam avenue in Dhaka. There is pretty eco-friendly place. A couple of days ago I went an event Iftar Mahfil and I was 3 days stayed here … More",
+      "rating": "2",
+      "time": "a year ago on Google",
+      "reviewerImage": "https://lh3.googleusercontent.com/a/ACg8ocKowkL4OMSXUokdDOe5bUFTriHeM7owM5nvlkrfC4Ml1KF2Dw=w100-h100-p-rp-mo-br100",
+      "profileUrl": "https://www.google.com/maps/contrib/108749526989875771926/reviews?hl=en",
+      "scrapedAt": "2026-07-03T18:48:54.248Z"
+    },
+    {
+      "reviewId": "ChdDSUhNMG9nS0VJQ0FnTUNRMW92MzFnRRAB",
+      "name": "Rayhan Ahmed",
+      "text": "Pan Pacific Sonargaon Dhaka is a well-regarded luxury hotel offering:\n\n* **Pros:** … More",
+      "rating": "1",
+      "time": "Edited 9 months ago on Google",
+      "reviewerImage": "https://lh3.googleusercontent.com/a-/ALV-UjWqTXFwyuTnYV_3mdW86P1Y5n45AYFA1vUEBFNMdu5PU1frLtNj=w100-h100-p-rp-mo-br100",
+      "profileUrl": "https://www.google.com/maps/contrib/108669743575440807509/reviews?hl=en",
+      "scrapedAt": "2026-07-03T18:48:54.249Z"
+    },
+    {
+      "reviewId": "Ci9DQUlRQUNvZENodHljRjlvT2xaQ1UxWm5PR04xZFhKSmVGZFRVMmhQYm10WFQyYxAB",
+      "name": "Mamiar Rahman",
+      "text": "Our breakfast here was an outright disaster. The service was handled with zero professionalism. … More",
+      "rating": "1",
+      "time": "7 months ago on Google",
+      "reviewerImage": "https://lh3.googleusercontent.com/a-/ALV-UjXOSJNaIsBLYcvgqt0vaMeEiabhkOkbHlBldWr3lEBubkvBolg=w100-h100-p-rp-mo-br100",
+      "profileUrl": "https://www.google.com/maps/contrib/114899690430036867214/reviews?hl=en",
+      "scrapedAt": "2026-07-03T18:48:54.249Z"
+    },
+    {
+      "reviewId": "Ci9DQUlRQUNvZENodHljRjlvT205c2MyWTRUblZOTVhNd1ZFOWZUbkJvU0RNMU4wRRAB",
+      "name": "Faisal Rabbi",
+      "text": "Rooms: Great.\n\nService: Great. … More",
+      "rating": "4",
+      "time": "11 months ago on Google",
+      "reviewerImage": "https://lh3.googleusercontent.com/a-/ALV-UjUdrH7ExevJ9ebBTNdWdoZYLnf5WtWxqloPOkX51Q9C5LRHIkYajA=w100-h100-p-rp-mo-ba12-br100",
+      "profileUrl": "https://www.google.com/maps/contrib/112824369362143987913/reviews?hl=en",
+      "scrapedAt": "2026-07-03T18:48:54.249Z"
+    },
+    {
+      "reviewId": "Ci9DQUlRQUNvZENodHljRjlvT2xCU2N5MHdRbWRCY0hOSWFXOHpiWFpsUzBKbllWRRAB",
+      "name": "Shifat Jahan Shifa",
+      "text": "I have visited this place recently for my office program. The scenario here is very beautiful. It was a day long program and I felt comfortable throughout the program here. A little bit of mismanagement I noticed though. But overall it was good. More",
+      "rating": "5",
+      "time": "9 months ago on Google",
+      "reviewerImage": "https://lh3.googleusercontent.com/a/ACg8ocIh3AgMePEkWCqDx9S16y06q5bWOJJubRuKiDiItPLGpdT099c=w100-h100-p-rp-mo-ba12-br100",
+      "profileUrl": "https://www.google.com/maps/contrib/106750293751688529842/reviews?hl=en",
+      "scrapedAt": "2026-07-03T18:48:54.249Z"
+    },
+    {
+      "reviewId": "ChZDSUhNMG9nS0VKdk9fdGZGaVpxb0h3EAE",
+      "name": "Trip.com Member",
+      "text": "Pan Pacific Sonargaon Dhaka offers a blend of traditional elegance and modern comfort in the heart of Dhaka. Guests can enjoy a range of amenities, including a large outdoor pool, a well-equipped fitness center, and multiple dining options … Read more on Trip.com",
+      "rating": "5",
+      "time": "8 months ago on Trip.com",
+      "reviewerImage": "https://lh3.googleusercontent.com/local-reviews/AJMZ0QeCck1CfANpZm9bBk3PHtP97Kh9k25HZfvq9yAWlN3BaIyjSHUPEfWkhAJmuYiJsH-_6g=w100-h100-p-rp-br100",
+      "profileUrl": "https://www.trip.com/hotels/detail?hotelid=1014156&Allianceid=810504&Sid=1394411&utm_medium=cpc&utm_campaign=HPA&utm_source=google#review",
+      "scrapedAt": "2026-07-03T18:48:54.249Z"
     }
   ]
 }

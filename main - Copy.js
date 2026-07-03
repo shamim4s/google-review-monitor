@@ -150,21 +150,76 @@ if (!clicked) {
     throw new Error('Could not open Reviews section');
 }
 
+/**
+ * ===============================
+ * STEP 2: WAIT FOR FEED
+ * ===============================
+ */
+console.log('Waiting for reviews feed...');
+
+console.log('Waiting for reviews container...');
 
 /**
+ * 🔥 Correct container from your HTML
+ */
+const reviewContainer = page.locator('div.m6QErb.XiKgde').first();
+
+await reviewContainer.waitFor({
+    state: 'attached',
+    timeout: 60000
+});
+
+await page.waitForTimeout(5000);
+
+console.log('Reviews container found');
+
+await page.waitForTimeout(5000);
+
+/**
+ * ===============================
+ * STEP 3: SCROLL REVIEWS
+ * ===============================
+ */
+console.log('Scrolling reviews...');
+
+for (let i = 0; i < 5; i++) {
+    await reviewContainer.evaluate(el => {
+        el.scrollBy(0, 3000);
+    });
+
+    await page.waitForTimeout(2000);
+}
+
+    /**
      * ===============================
      * STEP 4A: EXTRACT PLACE RATING SUMMARY
      * ===============================
      */
+
     console.log('Extracting place rating summary...');
 
     const placeRatingSummary = await page.evaluate(() => {
-        const blocks = Array.from(document.querySelectorAll('div.jANrlb'));
+
+        /**
+         * Find rating block
+         */
+        const blocks = Array.from(
+            document.querySelectorAll('div.jANrlb')
+        );
+
         let target = null;
 
         for (const block of blocks) {
-            const rating = block.querySelector('.fontDisplayLarge')?.textContent?.trim();
-            const reviews = block.querySelector('.fontBodySmall')?.textContent?.trim();
+
+            const rating =
+                block.querySelector('.fontDisplayLarge')
+                    ?.textContent
+                    ?.trim();
+
+            const reviews =
+                block.querySelector('.fontBodySmall')
+                    ?.textContent
+                    ?.trim();
 
             if (rating && reviews) {
                 target = block;
@@ -173,138 +228,149 @@ if (!clicked) {
         }
 
         if (!target) {
-            return { AvgRating: '', TotalStars: '', TotalReviews: '' };
+            return {
+                AvgRating: '',
+                TotalStars: '',
+                TotalReviews: ''
+            };
         }
 
+        /**
+         * Average rating
+         */
+        const AvgRating =
+            target.querySelector('.fontDisplayLarge')
+                ?.textContent
+                ?.trim() || '';
+
+        /**
+         * "4.5 stars"
+         */
+        const TotalStars =
+            target.querySelector('[role="img"]')
+                ?.getAttribute('aria-label')
+                ?.trim() || '';
+
+        /**
+         * "21,858 reviews"
+         */
+        const TotalReviews =
+            target.querySelector('.fontBodySmall')
+                ?.textContent
+                ?.trim() || '';
+
         return {
-            AvgRating: target.querySelector('.fontDisplayLarge')?.textContent?.trim() || '',
-            TotalStars: target.querySelector('[role="img"]')?.getAttribute('aria-label')?.trim() || '',
-            TotalReviews: target.querySelector('.fontBodySmall')?.textContent?.trim() || ''
+            AvgRating,
+            TotalStars,
+            TotalReviews
         };
     });
 
     console.log('======================');
-    console.log('PLACE RATING SUMMARY', placeRatingSummary);
+    console.log('PLACE RATING SUMMARY');
     console.log('======================');
+
+    console.log(placeRatingSummary);
 
 
 /**
  * ===============================
- * STEPS 3 & 4: SCROLL & EXTRACT INCREMENTALLY (FIXED CONTAINERS)
+ * STEP 4: EXTRACT REVIEWS
  * ===============================
  */
-console.log(`Scrolling and extracting reviews until we reach ${maxReview}...`);
+console.log('Extracting reviews...');
 
-const uniqueReviewsMap = new Map();
-let attemptsWithoutNewReviews = 0;
-let previousMapSize = 0;
+const reviews = await page.$$eval('[data-review-id]', cards => {
 
-while (uniqueReviewsMap.size < maxReview) {
-    // 1. Extract reviews currently visible in the DOM viewport
-    const batchReviews = await page.evaluate(() => {
-        const cards = document.querySelectorAll('div[data-review-id]');
-        const extracted = [];
+    const unique = new Map();
 
-        for (const card of cards) {
-            const reviewId = card.getAttribute('data-review-id') || '';
-            if (!reviewId) continue;
+    for (const card of cards) {
 
-            const nameEl = card.querySelector('.d4r55, .Xb9MSb, .al63be');
-            const textEl = card.querySelector('.wiI7pd, .MyEned');
+        const reviewId =
+            card.getAttribute('data-review-id') || '';
 
-            const name = nameEl ? nameEl.textContent.trim() : '';
-            const text = textEl ? textEl.textContent.trim() : '';
+        if (!reviewId) continue;
 
-            // If the element has been dynamically blanked out by Google, skip it for this frame
-            if (!name && !text) continue;
+        // skip duplicates
+        if (unique.has(reviewId)) continue;
 
-            const ratingText = card.querySelector('[role="img"]')?.getAttribute('aria-label')?.trim()
-                || card.querySelector('.DU9Pgb .fontBodyLarge.fzvQIb')?.textContent?.trim()
-                || '';
-            const match = ratingText.match(/^(\d+(\.\d+)?)/);
-            const rating = match ? match[1] : '';
+        const review = {
 
-            const time = card.querySelector('.rsqaWe, .xRkPPb')?.textContent?.trim() || '';
-            const img = card.querySelector('img')?.src || '';
-            const reviewerImage = img.replace(/=w\d+-h\d+/i, '=w100-h100');
-            const profileUrl = card.querySelector('button[data-href]')?.getAttribute('data-href') || '';
+            reviewId,
 
-            extracted.push({
-                reviewId, name, text, rating, time, reviewerImage, profileUrl, scrapedAt: new Date().toISOString()
-            });
-        }
-        return extracted;
-    });
+            name:
+                card.querySelector('.d4r55')
+                    ?.textContent
+                    ?.trim() || '',
 
-    // 2. Add current batch to master collection map
-    for (const review of batchReviews) {
-        if (!uniqueReviewsMap.has(review.reviewId)) {
-            uniqueReviewsMap.set(review.reviewId, review);
-        }
+            text:
+                card.querySelector('.wiI7pd')
+                    ?.textContent
+                    ?.trim() || '',
+
+            rating: (() => {
+                const ratingText = card.querySelector('[role="img"]')
+                    ?.getAttribute('aria-label')
+                    ?.trim()
+                ||
+                card.querySelector('.DU9Pgb .fontBodyLarge.fzvQIb')
+                    ?.textContent
+                    ?.trim()
+                ||
+                '';
+                const match = ratingText.match(/^(\d+(\.\d+)?)/);
+                return match ? match[1] : '';
+            })(),
+
+        time:
+            card.querySelector('.rsqaWe')
+                ?.textContent
+                ?.trim()
+            ||
+            card.querySelector('.DU9Pgb .xRkPPb')
+                // ?.childNodes[0]
+                ?.textContent
+                ?.trim()
+            ||
+            '',
+
+            // reviewerImage:
+            //     card.querySelector('img')
+            //         ?.src || '',
+            reviewerImage: (() => {
+                    const img = card.querySelector('img')?.src || '';
+
+                    return img.replace(/=w\d+-h\d+/i, '=w100-h100');
+                })(),
+
+            profileUrl:
+                card.querySelector('button[data-href]')
+                    ?.getAttribute('data-href') || '',
+
+            scrapedAt:
+                new Date().toISOString()
+        };
+
+        // skip broken empty cards
+        if (!review.name && !review.text) continue;
+
+        unique.set(reviewId, review);
     }
 
-    console.log(`Successfully captured: ${uniqueReviewsMap.size} / ${maxReview} unique reviews`);
-
-    if (uniqueReviewsMap.size >= maxReview) {
-        break;
-    }
-
-    // 3. Scroll the specific scrollable element container
-    // Fix: We find the element that actually contains scrollbars by checking scrollHeight vs clientHeight
-    await page.evaluate(() => {
-        const scrollableContainers = document.querySelectorAll('div.m6QErb.XiKgde');
-        let actualScrollableElement = null;
-
-        for (const el of scrollableContainers) {
-            if (el.scrollHeight > el.clientHeight) {
-                actualScrollableElement = el;
-                break;
-            }
-        }
-        
-        // Fallback to the first element if no dynamic one was matched
-        const targetEl = actualScrollableElement || document.querySelector('div.m6QErb.XiKgde');
-        if (targetEl) {
-            targetEl.scrollBy(0, 4000);
-        }
-    });
-
-    // 4. Wait for network/UI thread processing
-    await page.waitForTimeout(2500);
-
-    // 5. Anti-stuck safety catch
-    if (uniqueReviewsMap.size === previousMapSize) {
-        attemptsWithoutNewReviews++;
-        if (attemptsWithoutNewReviews >= 6) {
-            console.log('No more new reviews are loading from Google. Stopping collection loop.');
-            break;
-        }
-    } else {
-        attemptsWithoutNewReviews = 0;
-    }
-
-    previousMapSize = uniqueReviewsMap.size;
-}
-
-// Convert map back into structural array format
-let reviews = Array.from(uniqueReviewsMap.values());
-
-if (reviews.length > maxReview) {
-    reviews = reviews.slice(0, maxReview);
-}
+    return Array.from(unique.values());
+});
 
 /**
  * ===============================
  * FINAL JSON STRUCTURE
  * ===============================
  */
+
 const finalData = {
     summary: placeRatingSummary,
     totalReviewsScraped: reviews.length,
     reviews
 };
-
-
 
 console.log('======================');
 console.log('REVIEWS FOUND:', reviews.length);
